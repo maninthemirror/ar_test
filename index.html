@@ -71,21 +71,23 @@
         </a-scene>
         <button id="capture_start" style="position: fixed; bottom : 10%">拍照</button>
     </div>
+    <div style="border:2px solid yellow" id="result"></div>
     <script>
-        import Canvas2Image from './assets/canvas2image';
+        // import Canvas2Image from './assets/canvas2image';
         document.getElementById('capture_start').addEventListener('click', function() {
             html2canvas(document.querySelector("#capture")).then(canvas => {
-                canvasToImage(canvas);
+                console.log(canvas)
+                // canvasToImage(canvas);
             });
         });
-        function canvasToImage(canvas) {
-            const filename = 'xxxxx';
-            Canvas2Image.saveAsPNG(
-                canvas,
-                canvas.width, canvas.height,
-                filename
-            );
-        }
+        // function canvasToImage(canvas) {
+        //     const filename = 'xxxxx';
+        //     Canvas2Image.saveAsPNG(
+        //         canvas,
+        //         canvas.width, canvas.height,
+        //         filename
+        //     );
+        // }
     </script>
   </body>
 </html>
