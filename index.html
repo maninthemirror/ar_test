@@ -9,16 +9,12 @@
 
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    
     <script src="gesture-detector.js"></script>
     <script src="gesture-handler.js"></script>
   </head>
 
   <body>
     <!-- https://github.com/fcor/arjs-gestures/tree/master -->
-    <div id="capture" style="padding: 10px; background: #f5da55">
-
         <a-scene
         arjs
         embedded
@@ -71,25 +67,5 @@
             </a-marker> -->
         <a-entity camera></a-entity>
         </a-scene>
-        <button id="capture_start" style="position: fixed; bottom : 10%">拍照</button>
-    </div>
-    <div style="border:2px solid yellow" id="result"></div>
-    <script>
-        // import Canvas2Image from './assets/canvas2image';
-        // document.getElementById('capture_start').addEventListener('click', function() {
-        //     html2canvas(document.querySelector("#capture")).then(canvas => {
-        //         console.log(canvas)
-        //         // canvasToImage(canvas);
-        //     });
-        // });
-        // function canvasToImage(canvas) {
-        //     const filename = 'xxxxx';
-        //     Canvas2Image.saveAsPNG(
-        //         canvas,
-        //         canvas.width, canvas.height,
-        //         filename
-        //     );
-        // }
-    </script>
   </body>
 </html>
