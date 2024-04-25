@@ -15,57 +15,68 @@
 
   <body>
     <!-- https://github.com/fcor/arjs-gestures/tree/master -->
-    <a-scene
-      arjs
-      embedded
-      renderer="logarithmicDepthBuffer: true;"
-      vr-mode-ui="enabled: false"
-      gesture-detector
-      id="scene"
-    >
-        <a-assets>
-            <a-asset-item
-            id="bowser"
-            src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"
-            >
-            </a-asset-item>
-        </a-assets>
-        <a-marker
-            type='pattern'
-            url='assets/pattern-aa.patt'
-            raycaster="objects: .clickable"
-            emitevents="true"
-            cursor="fuse: false; rayOrigin: mouse;"
-            id="markerA"
+    <div id="capture" style="padding: 10px; background: #f5da55">
+
+        <a-scene
+        arjs
+        embedded
+        renderer="logarithmicDepthBuffer: true;"
+        vr-mode-ui="enabled: false"
+        gesture-detector
+        id="scene"
         >
-            <a-entity
+            <a-assets>
+                <a-asset-item
+                id="bowser"
+                src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"
+                >
+                </a-asset-item>
+            </a-assets>
+            <a-marker
+                type='pattern'
+                url='assets/pattern-aa.patt'
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA"
+            >
+                <a-entity
+                    id="bowser-model"
+                    gltf-model="#bowser"
+                    position="0 0 0"
+                    scale="0.05 0.05 0.05"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- <a-marker
+                preset="hiro"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA"
+            >
+                <a-entity
                 id="bowser-model"
                 gltf-model="#bowser"
                 position="0 0 0"
                 scale="0.05 0.05 0.05"
                 class="clickable"
                 gesture-handler
-            >
-            </a-entity>
-        </a-marker>
-        <!-- <a-marker
-            preset="hiro"
-            raycaster="objects: .clickable"
-            emitevents="true"
-            cursor="fuse: false; rayOrigin: mouse;"
-            id="markerA"
-        >
-            <a-entity
-            id="bowser-model"
-            gltf-model="#bowser"
-            position="0 0 0"
-            scale="0.05 0.05 0.05"
-            class="clickable"
-            gesture-handler
-            >
-            </a-entity>
-        </a-marker> -->
-      <a-entity camera></a-entity>
-    </a-scene>
+                >
+                </a-entity>
+            </a-marker> -->
+        <a-entity camera></a-entity>
+        </a-scene>
+        <button id="capture_start">拍照</button>
+    </div>
+    <script>
+        document.getElementById('capture_start').addEventListener('click', function() {
+            html2canvas(document.querySelector("#capture")).then(canvas => {
+                document.body.appendChild(canvas)
+            });
+        });
+    </script>
   </body>
 </html>
