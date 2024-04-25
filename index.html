@@ -81,19 +81,19 @@
             <a-entity camera></a-entity>
         </a-scene>
     </div>
-    <div id="screenshot-container" style="display: none;">
-    </div>
+    <!-- <div id="screenshot-container" style="display: none;">
+    </div> -->
         <div id="cap">拍照</div>
     <script>
 
         document.getElementById('cap').addEventListener('click', function() {
             document.getElementById('scene-container').style.display = 'none';
             document.getElementById('screenshot-container').style.display = 'block';
-            html2canvas(document.querySelector("#scene-container")).then(canvas => {
-                console.log(canvas)
-                document.getElementById('screenshot-container').appendChild(canvas)
-                // document.body.appendChild(canvas)
-            });
+            // html2canvas(document.querySelector("#scene-container")).then(canvas => {
+            //     console.log(canvas)
+            //     document.getElementById('screenshot-container').appendChild(canvas)
+            //     // document.body.appendChild(canvas)
+            // });
         });
     </script>
   </body>
