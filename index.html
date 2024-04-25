@@ -30,7 +30,7 @@
             >
             </a-asset-item>
         </a-assets>
-        <!-- <a-marker
+        <a-marker
             type='pattern'
             url='assets/pattern-aa.patt'
             raycaster="objects: .clickable"
@@ -47,24 +47,24 @@
                 gesture-handler
             >
             </a-entity>
-        </a-marker> -->
-      <a-marker
-        preset="hiro"
-        raycaster="objects: .clickable"
-        emitevents="true"
-        cursor="fuse: false; rayOrigin: mouse;"
-        id="markerA"
-      >
-        <a-entity
-          id="bowser-model"
-          gltf-model="#bowser"
-          position="0 0 0"
-          scale="0.05 0.05 0.05"
-          class="clickable"
-          gesture-handler
+        </a-marker>
+        <!-- <a-marker
+            preset="hiro"
+            raycaster="objects: .clickable"
+            emitevents="true"
+            cursor="fuse: false; rayOrigin: mouse;"
+            id="markerA"
         >
-        </a-entity>
-      </a-marker>
+            <a-entity
+            id="bowser-model"
+            gltf-model="#bowser"
+            position="0 0 0"
+            scale="0.05 0.05 0.05"
+            class="clickable"
+            gesture-handler
+            >
+            </a-entity>
+        </a-marker> -->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
