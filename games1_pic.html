@@ -84,6 +84,8 @@
         renderer="logarithmicDepthBuffer: true;alpha: true;"
         vr-mode-ui="enabled: false"
         gesture-detector
+        width="540"
+        height="960"
         id="scene"
         >
         <a-assets>
@@ -159,7 +161,7 @@
         // document.getElementById('video').height = window.innerHeight;
       
         document.getElementById('cap').addEventListener('click', async function() {
-            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular', { width: 300, height: 300 });
+            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
             document.getElementById('result_prev').appendChild(_aa);
             capture();
             myModal.show();
