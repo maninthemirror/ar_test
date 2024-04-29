@@ -186,23 +186,34 @@
 
         function capture() {
             let canvas = document.createElement('canvas');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
+            canvas.width = 540; // 设置目标宽度
+            canvas.height = 960; // 设置目标高度
             let context = canvas.getContext('2d');
 
-            // 先設定透明背景
             context.fillStyle = 'rgba(0, 0, 0, 0)';
             context.fillRect(0, 0, canvas.width, canvas.height);
 
-            // 繪製視頻到canvas
-            if (video.readyState === 4) { // 確保視頻已經載入足夠的數據
-                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            // 确保在绘制图像前视频已经开始播放
+            if (video.readyState === 4) { // 确保视频已经加载足够的数据
+                // 根据需要调整缩放比例，这里假设视频宽高比与目标相同
+                let scaleX = canvas.width / video.videoWidth;
+                let scaleY = canvas.height / video.videoHeight;
+                let scaleToFit = Math.min(scaleX, scaleY);
+
+                let scaleWidth = scaleToFit * video.videoWidth;
+                let scaleHeight = scaleToFit * video.videoHeight;
+
+                let offsetX = (canvas.width - scaleWidth) / 2;
+                let offsetY = (canvas.height - scaleHeight) / 2;
+
+                context.drawImage(video, offsetX, offsetY, scaleWidth, scaleHeight);
             } else {
                 console.log('Video not ready for capture');
             }
 
             document.getElementById('result').appendChild(canvas);
         }
+
         </script>
     
   </body>
