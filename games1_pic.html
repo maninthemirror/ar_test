@@ -24,6 +24,7 @@
             position: relative;
             width: 100%;
             padding-top: 177.7%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+            position: fixed; top: 0; left: 0; z-index: -2;
         }
         #video_wrapper video{
             width: 100%;
@@ -55,10 +56,10 @@
             height: 100%;
         }
         #result canvas{
-            z-index: 3;
+            z-index: 4;
         } 
         #result_prev canvas{
-            z-index: 4;
+            z-index: 3;
         } 
         #truebg{
             position: fixed;
@@ -68,7 +69,7 @@
 </head>
 <body>
     <div id="video_wrapper">
-        <video id="video" autoplay style="position: fixed; top: 0; left: 0; z-index: -2;"></video>
+        <video id="video" autoplay></video>
     </div>
     <!-- https://github.com/fcor/arjs-gestures/tree/master -->
     <!-- <div id="scene-container"> -->
