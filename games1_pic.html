@@ -18,7 +18,8 @@
     <script src="assets/js/ar/gesture-handler.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script> -->
     <!-- <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script> -->
-    <script src="assets/js/ar/webcam-screenshot.js"></script>
+    <!-- <script src="https://rawgit.com/mrdoob/three.js/r73/build/three.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/gh/mrdoob/stats.js@r17/build/stats.min.js"></script> -->
 
 
     <title>好嘻彰化</title>
@@ -40,9 +41,14 @@
             width: 100%;
             height : 450px;
         }
+        #truebg{
+            position: fixed;
+            z-index: 0;
+        }
     </style>
 </head>
 <body>
+    <video id="video" autoplay style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></video>
     <!-- https://github.com/fcor/arjs-gestures/tree/master -->
     <!-- <div id="scene-container"> -->
     <a-scene
@@ -95,7 +101,7 @@
         </a-marker> -->
         <a-entity camera></a-entity>
     </a-scene>
-
+    <div id="truebg"></div>
     <hr>
     <button class="btn btn-secondary" id="cap">拍照</button>
     <!-- Modal -->
@@ -107,10 +113,11 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <canvas width='640' height='480' style='visibility:hidden;' id='doubleImage'></canvas>
+                    <!-- <canvas width='640' height='480' style='visibility:hidden;' id='doubleImage'></canvas> -->
 
 
-                    <!-- <div id="result" class="img-fluid"></div> -->
+                    <div id="result_prev" class="img-fluid"></div>
+                    <div id="result" class="img-fluid"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -121,104 +128,40 @@
     <script>
         var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
         
-        function takeScreenshot() {
-			var w = window.open('', '');
-			w.document.title = "Screenshot";
-			var img = new Image();
-			var secondImg = new Image();
-			renderer.render(scene, camera);
-			var doubleImageCanvas = document.getElementById('doubleImage');
-			var context = doubleImageCanvas.getContext('2d');
-			var sources = {
-				firstImage: renderer.domElement.toDataURL("image/png"),
-				secondImage: arToolkitContext.arController.canvas.toDataURL("image/png")
-			};
-
-			loadImages(sources, function(images){
-				context.drawImage(images.secondImage, 0, 0);
-				context.drawImage(images.firstImage, 0, 0);
-				img.src = doubleImageCanvas.toDataURL("image/png");
-				w.document.body.appendChild(img);
-			});
-		}
-
-		function loadImages(sources, callback) {
-			var images = {};
-			var loadedImages = 0;
-			var numImages = 0;
-			// get num of sources
-			for (var src in sources) {
-				numImages++;
-			}
-			for (var src in sources) {
-				images[src] = new Image();
-				images[src].onload = function () {
-					if (++loadedImages >= numImages) {
-						callback(images);
-					}
-				};
-				images[src].src = sources[src];
-			}
-		}
+      
         document.getElementById('cap').addEventListener('click', async function() {
-            takeScreenshot();
+            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
+            document.getElementById('result_prev').appendChild(_aa);
+            capture();
             myModal.show();
-            // var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-            // html2canvas(document.querySelector("#cap_frame")).then(canvas => {
-            // html2canvas(document.querySelector("#cap_frame")).then(canvas => {
-            //     document.getElementById('result').appendChild(canvas);
-            //     myModal.show();
-            // });
-
-            // dom to image
-            // const el = document.getElementById('cap_frame');
-            // const config = {
-            //     quality: 1,
-            //     // style: { "filter": "grayscale(100%)" }
-            // };
-            // const dataUri = await domtoimage.toPng(el, config).then(dataUrl => {
-            //     console.log(dataUrl)
-            //     var img = new Image();
-            //     img.src = dataUrl;
-            //     img.classList.add("img-fluid");
-            //     document.getElementById('result').appendChild(img);
-            //     myModal.show();
-
-            // }).catch(function (error) {
-            //     console.error('oops, something went wrong!', error);
-            // });
-
-
-
-
-
-
-
-
-
-            // const dataUri = await domtoimage.toPng(el, config).then(function (dataUrl) {
-            //     var img = new Image();
-            //     img.src = dataUrl;
-            //     document.body.appendChild(img);
-            // })
-            // .catch(function (error) {
-            //     console.error('oops, something went wrong!', error);
-            // });
-    
-            // var img = new Image();
-            // img.src = dataUri;
-            // console.log(dataUri)
-            // document.getElementById('result').appendChild(img);
-            // myModal.show();
-    
-            // 下載圖片
-            // const link = document.createElement('a');
-            // const filename = 'Demo.png';
-            // link.download = filename;
-            // link.href = dataUri;
-            // link.click();
+           
         });
-    </script>
+        let video = document.getElementById('video');
+
+        // Get access to the camera
+        if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+                video.srcObject = stream;
+                video.play();
+            });
+        }
+
+        function capture() {
+            let canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            let context = canvas.getContext('2d');
+            
+            // Draw the video frame to the canvas
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            
+            // Optionally capture the AR content in a separate canvas and overlay it here
+            
+            // Save or display the canvas content
+            // document.body.appendChild(canvas);
+            document.getElementById('result').appendChild(canvas);
+        }
+        </script>
     
   </body>
 </html>
