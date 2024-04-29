@@ -1,0 +1,11 @@
+Model Information:
+* title:	Template Bear For Custom Models
+* source:	https://sketchfab.com/3d-models/template-bear-for-custom-models-a3cb2591d0af49d8aea137097bbc46ae
+* author:	Modelguy99 (https://sketchfab.com/Modelguy99)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Template Bear For Custom Models" (https://sketchfab.com/3d-models/template-bear-for-custom-models-a3cb2591d0af49d8aea137097bbc46ae) by Modelguy99 (https://sketchfab.com/Modelguy99) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
