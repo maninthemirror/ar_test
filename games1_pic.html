@@ -87,8 +87,70 @@
         </a-scene>
     </div>
     <!-- </div> -->
+    <div id="screenshot-container" style="display: none;">
+    </div>
+    <div id="cap">拍照</div>
     <!-- Modal -->
-    <script></script>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">拍照結果</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="result"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var myModal = document.getElementById('exampleModal')
+    
+        document.getElementById('cap').addEventListener('click', async function() {
+            // document.getElementById('scene-container').style.display = 'none';
+            // document.getElementById('screenshot-container').style.display = 'block';
+            // 抓取指定的 div，產生 base64 格式圖片
+            const el = document.getElementById('wrappeer-hello');
+            const config = {
+                quality: 1,
+                // style: { "filter": "grayscale(100%)" }
+            };
+            const dataUri = await domtoimage.toPng(el, config).then(dataUrl => {
+                var img = new Image();
+                img.src = dataUrl;
+                document.getElementById('result').appendChild(img);
+
+            }).catch(function (error) {
+                console.error('oops, something went wrong!', error);
+            });
+
+            // const dataUri = await domtoimage.toPng(el, config).then(function (dataUrl) {
+            //     var img = new Image();
+            //     img.src = dataUrl;
+            //     document.body.appendChild(img);
+            // })
+            // .catch(function (error) {
+            //     console.error('oops, something went wrong!', error);
+            // });
+    
+            // var img = new Image();
+            // img.src = dataUri;
+            // console.log(dataUri)
+            // document.getElementById('result').appendChild(img);
+            // myModal.show();
+    
+            // 下載圖片
+            // const link = document.createElement('a');
+            // const filename = 'Demo.png';
+            // link.download = filename;
+            // link.href = dataUri;
+            // link.click();
+        });
+    </script>
     
   </body>
 </html>
