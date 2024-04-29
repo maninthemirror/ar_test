@@ -16,24 +16,24 @@
     
     <script src="assets/js/ar/gesture-detector.js"></script>
     <script src="assets/js/ar/gesture-handler.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script> -->
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
     <title>好嘻彰化</title>
     <style>
+        #cap_frame{
+            text-align: center;
+        }
         #wrappeer-hello{
             width: 100%;
             max-width: 70%;
-            height: 70vh;
+            height: 80vh;
             margin: 0 auto;
+            border : 1px solid #000;
         }
         #cap{
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
         }
     </style>
 </head>
@@ -41,11 +41,13 @@
     <!-- https://github.com/fcor/arjs-gestures/tree/master -->
     <!-- <div id="scene-container"> -->
     <div id="cap_frame">
+        <h1>ddd</h1>
         <iframe src="games1.html" id="wrappeer-hello"></iframe>
 
+        <!-- </div> -->
+        <hr>
+        <button class="btn btn-secondary" id="cap">拍照</button>
     </div>
-    <!-- </div> -->
-    <div id="cap">拍照</div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -55,7 +57,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="result"></div>
+                    <div id="result" class="img-fluid"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -65,26 +67,43 @@
     </div>
     <script>
         var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
-    
-        document.getElementById('cap').addEventListener('click', async function() {
-            // document.getElementById('scene-container').style.display = 'none';
-            // document.getElementById('screenshot-container').style.display = 'block';
-            // 抓取指定的 div，產生 base64 格式圖片
-            const el = document.getElementById('cap_frame');
-            const config = {
-                quality: 1,
-                // style: { "filter": "grayscale(100%)" }
-            };
-            const dataUri = await domtoimage.toPng(el, config).then(dataUrl => {
-                console.log(dataUrl)
-                var img = new Image();
-                img.src = dataUrl;
-                document.getElementById('result').appendChild(img);
-                myModal.show();
 
-            }).catch(function (error) {
-                console.error('oops, something went wrong!', error);
+        var iframe = document.getElementById('wrappeer-hello');
+        var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        document.getElementById('cap').addEventListener('click', async function() {
+            
+            var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            // html2canvas(document.querySelector("#cap_frame")).then(canvas => {
+            html2canvas(document.querySelector("#cap_frame")).then(canvas => {
+                document.getElementById('result').appendChild(canvas);
+                myModal.show();
             });
+
+            // dom to image
+            // const el = document.getElementById('cap_frame');
+            // const config = {
+            //     quality: 1,
+            //     // style: { "filter": "grayscale(100%)" }
+            // };
+            // const dataUri = await domtoimage.toPng(el, config).then(dataUrl => {
+            //     console.log(dataUrl)
+            //     var img = new Image();
+            //     img.src = dataUrl;
+            //     img.classList.add("img-fluid");
+            //     document.getElementById('result').appendChild(img);
+            //     myModal.show();
+
+            // }).catch(function (error) {
+            //     console.error('oops, something went wrong!', error);
+            // });
+
+
+
+
+
+
+
+
 
             // const dataUri = await domtoimage.toPng(el, config).then(function (dataUrl) {
             //     var img = new Image();
