@@ -105,7 +105,7 @@
         var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
         document.getElementById('cap').addEventListener('click', async function() {
             // html2canvas(document.querySelector("#cap_frame")).then(canvas => {
-            html2canvas(document.querySelector(".a-canvas")).then(canvas => {
+            html2canvas(document.body).then(canvas => {
                 document.getElementById('result').appendChild(canvas);
                 myModal.show();
             });
