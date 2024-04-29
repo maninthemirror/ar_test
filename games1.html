@@ -83,5 +83,33 @@
         <a-entity camera></a-entity>
     </a-scene>
     
+    <button class="btn btn-secondary" id="cap">拍照</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">拍照結果</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="result" class="img-fluid"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        document.getElementById('cap').addEventListener('click', async function() {
+            // html2canvas(document.querySelector("#cap_frame")).then(canvas => {
+            html2canvas(document.querySelector(".a-canvas")).then(canvas => {
+                document.getElementById('result').appendChild(canvas);
+                myModal.show();
+            });
+        })
+    </script>
   </body>
 </html>
