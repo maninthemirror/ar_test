@@ -94,7 +94,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">拍照結果perspective</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">拍照結果pequirectangulare</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -110,7 +110,7 @@
         var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
         document.getElementById('cap').addEventListener('click', async function() {
             // html2canvas(document.querySelector("#cap_frame")).then(canvas => {
-            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('perspective');
+            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
             document.getElementById('result').appendChild(_aa);
                 // document.querySelector('a-scene').components.screenshot.capture('perspective')
 
