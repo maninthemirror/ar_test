@@ -144,7 +144,7 @@
         document.getElementById('video').height = window.innerHeight;
       
         document.getElementById('cap').addEventListener('click', async function() {
-            const _aa = document.querySelector('a-scene').components.screenshot.capture('equirectangular');
+            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
             document.getElementById('result_prev').appendChild(_aa);
             capture();
             myModal.show();
