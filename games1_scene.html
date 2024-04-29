@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/js/ar/styles.css">
+
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <script src="assets/js/ar/gesture-detector.js"></script>
+    <script src="assets/js/ar/gesture-handler.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+    <title>好嘻彰化</title>
+    <style>
+        #cap{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- https://github.com/fcor/arjs-gestures/tree/master -->
+    <!-- <div id="scene-container"> -->
+    <div id="wrappeer-hello">
+        <a-scene
+            arjs
+            embedded
+            renderer="logarithmicDepthBuffer: true;"
+            vr-mode-ui="enabled: false"
+            gesture-detector
+            id="scene"
+            >
+            <a-assets>
+                <!-- <a-asset-item id="bowser" src="https://cdn.glitch.com/06bd98b4-97ee-4c07-a546-fe39ca205034%2Fbowser.glb"></a-asset-item> -->
+                <a-asset-item id="bowser" src="assets/js/ar/model/scene.gltf"></a-asset-item>
+            </a-assets>
+            <a-marker
+                type='pattern'
+                url='assets/js/ar/model/pattern-aa.patt'
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA"
+            >
+                <a-entity
+                    id="bowser-model"
+                    gltf-model="#bowser"
+                    position="0 0 0"
+                    rotation="-90 0 0"
+                    scale="0.4 0.4 0.4"
+                    class="clickable"
+                    gesture-handler
+                >
+                </a-entity>
+            </a-marker>
+            <!-- <a-marker
+                preset="hiro"
+                raycaster="objects: .clickable"
+                emitevents="true"
+                cursor="fuse: false; rayOrigin: mouse;"
+                id="markerA"
+            >
+                <a-entity
+                id="bowser-model"
+                gltf-model="#bowser"
+                position="0 0 0"
+                scale="0.05 0.05 0.05"
+                class="clickable"
+                gesture-handler
+                >
+                </a-entity>
+            </a-marker> -->
+            <a-entity camera camera="zoom:1"></a-entity>
+        </a-scene>
+    </div>
+    <!-- </div> -->
+    <!-- Modal -->
+    <script></script>
+    
+  </body>
+</html>
