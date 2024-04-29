@@ -60,10 +60,10 @@
             height : 100%;
         }
         #result{
-            z-index: 4;
+            z-index: 3;
         } 
         #result_prev{
-            z-index: 3;
+            z-index: 4;
         } 
         #truebg{
             position: fixed;
@@ -159,7 +159,7 @@
         // document.getElementById('video').height = window.innerHeight;
       
         document.getElementById('cap').addEventListener('click', async function() {
-            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
+            const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular', { width: 300, height: 300 });
             document.getElementById('result_prev').appendChild(_aa);
             capture();
             myModal.show();
