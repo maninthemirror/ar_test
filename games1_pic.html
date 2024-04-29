@@ -20,6 +20,15 @@
 
     <title>好嘻彰化</title>
     <style>
+        #video_wrapper{
+            position: relative;
+            width: 100%;
+            padding-top: 177.7%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+        }
+        #video_wrapper video{
+            width: 100%;
+            height: 100%;
+        }
         #cap_frame{
             text-align: center;
         }
@@ -58,7 +67,9 @@
     </style>
 </head>
 <body>
-    <video id="video" autoplay style="position: fixed; top: 0; left: 0; z-index: -2;"></video>
+    <div id="video_wrapper">
+        <video id="video" autoplay style="position: fixed; top: 0; left: 0; z-index: -2;"></video>
+    </div>
     <!-- https://github.com/fcor/arjs-gestures/tree/master -->
     <!-- <div id="scene-container"> -->
     <a-scene
@@ -139,8 +150,8 @@
     <script>
         var myModal = new bootstrap.Modal(document.getElementById('exampleModal'))
         // 把video tag的長寬改成符合視窗大小
-        document.getElementById('video').width = window.innerWidth;
-        document.getElementById('video').height = window.innerHeight;
+        // document.getElementById('video').width = window.innerWidth;
+        // document.getElementById('video').height = window.innerHeight;
       
         document.getElementById('cap').addEventListener('click', async function() {
             const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
