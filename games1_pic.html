@@ -189,16 +189,11 @@
             canvas.width = video.videoWidth;
             canvas.height = video.videoHeight;
             let context = canvas.getContext('2d');
-            context.fillStyle = 'rgba(0, 0, 0, 0)'; // 設定透明填充色
-            
-            // Draw the video frame to the canvas
-            context.drawImage(video, 0, 0, canvas.width, canvas.height);
-            console.log(context)
-            console.log(canvas)
-            // Optionally capture the AR content in a separate canvas and overlay it here
-            
-            // Save or display the canvas content
-            // document.body.appendChild(canvas);
+
+            // 先設定透明背景
+            context.fillStyle = 'rgba(0, 0, 0, 0)';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
             // 繪製視頻到canvas
             if (video.readyState === 4) { // 確保視頻已經載入足夠的數據
                 context.drawImage(video, 0, 0, canvas.width, canvas.height);
