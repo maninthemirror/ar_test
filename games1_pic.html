@@ -199,6 +199,13 @@
             
             // Save or display the canvas content
             // document.body.appendChild(canvas);
+            // 繪製視頻到canvas
+            if (video.readyState === 4) { // 確保視頻已經載入足夠的數據
+                context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            } else {
+                console.log('Video not ready for capture');
+            }
+
             document.getElementById('result').appendChild(canvas);
         }
         </script>
