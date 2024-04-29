@@ -56,6 +56,7 @@
             left: 0; */
             width: 100%;
             height: 100%;
+            padding-top: 177.7%;
         }
         #result canvas, #result_prev canvas, #result_3 canvas{
             width: 100%;
@@ -151,9 +152,9 @@
                         <div class="col-6">
                             <div id="result" class="img-fluid"></div>
                         </div>
-                        <div class="col-6">
+                        <!-- <div class="col-6">
                             <div id="result_3" class="img-fluid"></div>
-                        </div>
+                        </div> -->
                         <!-- <div id="result_prev" class="img-fluid"></div> -->
                         
                     </div>
@@ -173,9 +174,9 @@
         document.getElementById('cap').addEventListener('click', async function() {
             const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
             document.getElementById('result_prev').appendChild(_aa);
-            html2canvas(document.body).then(canvas => {
-                document.getElementById('result_3').appendChild(canvas)
-            });
+            // html2canvas(document.body).then(canvas => {
+            //     document.getElementById('result_3').appendChild(canvas)
+            // });
             capture();
             myModal.show();
            
