@@ -149,17 +149,12 @@
                 </div>
                 <div class="modal-body">
                     <!-- <canvas width='640' height='480' style='visibility:hidden;' id='doubleImage'></canvas> -->
-                    <div id="result_area" class="row">
-                        <div class="col-6">
-                            <div id="result_prev" class="img-fluid"></div>
-                        </div>
-                        <div class="col-6">
-                            <div id="result" class="img-fluid"></div>
-                        </div>
-                        <div class="col-12">
-                            <div id="result_3" class="img-fluid"></div>
-                        </div>
+                    <div id="result_area">
+                        <div id="result_prev" class="img-fluid"></div>
+                        <div id="result" class="img-fluid"></div>
+                        <!-- <div id="result_3" class="img-fluid"></div> -->
                         <!-- <div id="result_prev" class="img-fluid"></div> -->
+                        <div id="aa"></div>
                         
                     </div>
                 </div>
@@ -178,8 +173,9 @@
         document.getElementById('cap').addEventListener('click', async function() {
             const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
             document.getElementById('result_prev').appendChild(_aa);
+            document.getElementById('aa').innerText = _aa;
             // html2canvas(document.body).then(canvas => {
-                document.getElementById('result_3').appendChild(_aa)
+                // document.getElementById('result_3').appendChild(_aa)
             // });
             capture();
             myModal.show();
