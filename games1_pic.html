@@ -150,11 +150,11 @@
                 <div class="modal-body">
                     <!-- <canvas width='640' height='480' style='visibility:hidden;' id='doubleImage'></canvas> -->
                     <div id="result_area">
+                        <div id="aa"></div>
                         <div id="result_prev" class="img-fluid"></div>
                         <div id="result" class="img-fluid"></div>
                         <!-- <div id="result_3" class="img-fluid"></div> -->
                         <!-- <div id="result_prev" class="img-fluid"></div> -->
-                        <div id="aa"></div>
                         
                     </div>
                 </div>
@@ -174,6 +174,7 @@
             const _aa = document.querySelector('a-scene').components.screenshot.getCanvas('equirectangular');
             document.getElementById('result_prev').appendChild(_aa);
             document.getElementById('aa').innerText = _aa;
+            console.log(_aa)
             // html2canvas(document.body).then(canvas => {
                 // document.getElementById('result_3').appendChild(_aa)
             // });
